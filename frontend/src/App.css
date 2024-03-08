@@ -1,0 +1,574 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+*{
+    padding: 0px; margin: 0px;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+}
+/* error popup */
+.popup-wrp{
+    height: 100vh; width: 100vw;
+    background: rgba(0, 0, 0, 0.35);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0px; left: 0px;
+    z-index: 4;
+}
+.popup-wrp .error-popup{
+    background: white;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 25px 30px;
+    border-radius: 7px;
+    width: fit-content;
+}
+.popup-wrp .error-popup h2{
+    font-weight: 400;
+}
+.popup-wrp .error-popup p{
+    color: #5F6368;
+}
+.popup-wrp .error-popup button{
+    color: white;
+    background: #297be6eb;
+    align-self: flex-end;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: .7px;
+    padding: 10px 30px;
+    border-radius: 25px;
+    margin-top: 15px;
+    cursor: pointer;
+    border: none;
+}
+.popup-wrp .error-popup button:hover{
+    opacity: .9;
+    box-shadow: 0px 0px 2px #297BE6;
+}
+
+/* tooltip component */
+.tooltop-container{
+    position: relative;
+}
+.children:hover + .tooltip{
+    opacity: 1;
+}
+.tooltip{
+    position: absolute;
+    top: 100%; 
+    left: 50%;
+    transform: translateX(-50%);
+    width: max-content;
+    z-index: 6;
+    padding: 5px 8px;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.65);
+    color: white;
+    border-radius: 3px;
+    font-size: 14px;
+    letter-spacing: .5px;
+    opacity: 0;
+    transition: opacity ease-in-out .1s;
+    transition-delay: .1s;
+}
+.tooltip.left{
+    left: 0%;
+    transform: translateX(0%);
+}
+.tooltip.right{
+    left: auto; right: 0%;
+    transform: translateX(0%);
+}
+
+/* header component */
+.header{
+    display: flex;
+    height: 65px;
+    padding: 5px 15px;
+    background: #F6F8FC;
+    color: rgba(0, 0, 0, 0.65);
+}
+.logo{
+    width: 15%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    user-select: none;
+}
+.searchbar-wrp{
+    width: 65%;
+    display: flex;
+    align-items: center;
+}
+.searchbar{
+    height: 85%;
+    width: 65%;
+    background: #eaf1fbdd;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 25px;
+}
+.searchbar:focus-within{
+    background: white;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+}
+.searchbar input{
+    flex-grow: 1;
+    outline: none;
+    border: none;
+    background: transparent;
+    font-size: 16px;
+}
+.searchbar input::placeholder{
+    user-select: none;
+}
+.header-right{
+    width: 20%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 15px;
+}
+.header .icons{
+    cursor: pointer;
+    height: 35px; width: 35px;
+    padding: 6px;
+    border-radius: 50%;
+}
+.header .icons:hover{
+    background: #E8EAED;
+}
+.header .clearIcon{ visibility: hidden; }
+.header .clearIcon.active{ visibility: visible; }
+
+/* toast component */
+.toast-wrp{
+    position: fixed;
+    top: 2%; left: 45%;
+    font-size: 18px;
+    background: #f7f0b9;
+    font-weight: 600;
+    color: rgba(0,0,0,0.65);
+    letter-spacing: .3px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 166, 0, 0.741);
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+}
+ 
+/* sidebar component */
+.sidebar{
+    height: 100%;
+    width: 15%;
+    border: 1px solid #F6F8FC;
+    background: #F6F8FC;
+    user-select: none;
+}
+.sidebar.hide{
+    width: fit-content;
+}
+.sidebar.hide span{
+    display: none;
+}
+.sidebar.hide:hover{
+    width: 15%;
+}
+.sidebar.hide:hover span{
+    display: block;
+}
+.sidebar .compose-btn{
+    background: #c2e7fff2;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px;
+    border-radius: 15px;
+    margin: 10px 10px 15px 10px;
+    cursor: pointer;
+}
+.sidebar .compose-btn:hover{
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.236);
+}
+.sidebar .links{
+    text-decoration: none;
+    color: #444746e0;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 0px 20px;
+    cursor: pointer;
+    border-top-right-radius: 35px;
+    border-bottom-right-radius: 35px;
+    height: 40px;
+}
+.sidebar .links:hover{
+    background: #EAEBEF;
+}
+.sidebar .links span{
+    color: black;
+}
+.sidebar .links.active{
+    color: black;
+    background: #d3e3fd99;
+    font-weight: 500;
+}
+.main-wrp{
+    display: flex;
+    width: 100vw;
+    height: calc(100vh - 65px);
+}
+
+/* compose */
+.compose-wrp.large{
+    position: fixed;
+    z-index: 2;
+    top: 0px; left: 0px;
+    height: 100vh; 
+    width: 100vw;
+    background: rgba(0, 0, 0, 0.45);
+}
+.compose{
+    position: fixed;
+    z-index: 3;
+    bottom: 0px; right: 4%;
+    width: 38vw;
+    font-size: 16px;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.236);
+}
+.compose.large{
+    width: 80vw;
+    left: 10%;
+    top: 5%; bottom: auto; 
+}
+.compose .heading{
+    background: #F2F6FC;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 15px;
+}
+.compose .heading span{
+    font-weight: 400;
+}
+.compose .icons{
+    cursor: pointer;
+    height: 28px; width: auto;
+    border-radius: 50%;
+    padding: 4px;
+    color: rgba(0, 0, 0, 0.65);
+}
+.compose .icons:hover{
+    background: #e8eaedc3;
+}
+.compose .largeScreen, 
+.compose .smallScreen{
+    height: 25px;
+}
+.compose .largeScreen { display: inline-block; }
+.compose .smallScreen { display: none; }
+.compose.large .largeScreen { display: none; }
+.compose.large .smallScreen { display: inline-block; }
+
+.compose form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+}
+.compose form .to-field-wrp{
+    display: flex;
+    gap: 10px;
+}
+.compose form input{
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    font-size: inherit;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.133);
+}
+.compose .link { 
+    width: fit-content;
+    color: rgba(0, 0, 0, 0.8);
+    cursor: pointer;
+}
+.compose .link:hover{
+    text-decoration: underline;
+    text-decoration-color: rgba(0, 0, 0, 0.5);
+ }
+.compose .link.hide { display: none; }
+
+.compose .cc,
+.compose .bcc{
+    display: none;
+}
+.compose .cc.active,
+.compose .bcc.active{
+    display: block;
+}
+.compose form textarea{
+    font-size: inherit;
+    border: none;
+    outline: none;
+    resize: none;
+    line-height: 36px;
+}
+.compose.large form textarea{
+    line-height: 30px;
+}
+.compose form .btn-wrp{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 10px;
+}
+.compose form .btn-wrp .left-content{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.compose form .btn-wrp button{
+    color: white;
+    background: #1b61d1f2;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: none;
+    padding: 9px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.compose form .btn-wrp button:hover{
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+    opacity: .85;
+}
+.compose .btn-wrp .sendIcon{
+    height: 15px; width: auto;
+}
+.compose .emojiPanel{
+    position: absolute;
+    font-size: 20px;
+    bottom: 68px; left: 85px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
+}
+/* when large screen is active */
+
+.main{
+    width: 85%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.main .header{
+    height: 60px;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    position: absolute;
+    z-index: 1;
+    padding: 0px 25px;
+}
+.main .header .wrp{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.main input[type='checkbox']{
+    width: 18px;   height: 18px;
+    cursor: pointer;
+}
+.main .header .wrp .icons{
+    height: 48px; 
+    width: 48px;
+    padding: 12px;
+    border-radius: 50%;
+}
+.main .header .pagination{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.main .pagination .arrow{
+    cursor: pointer;
+    font-size: 22px;
+    height: 30px; width: 30px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.main .header .pagination .arrow:hover{
+    background-color: rgba(192, 192, 192, 0.25);
+}
+.main .empty-message{
+    margin-top: 70px;
+    font-size: 18px;
+    padding: 10px 25px;
+    color: rgba(0, 0, 0, 0.8);
+    border-bottom: 1px solid rgba(128, 128, 128, 0.12);
+    text-align: center;
+}
+.main .content-wrp{
+    margin-top: 60px;
+    flex-grow: 1;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/* email list.js */
+/* inbox starrred sent drafts all mail bin */
+.email-list{
+    height: 50px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    gap: 15px;
+    padding: 0px 10px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.466);
+    box-shadow: 0px 0px 5px transparent;
+}
+.email-list.selected{
+    background: #cee3ffc5;
+}
+.email-list:hover{
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+}
+.email-list .icons-wrp-left{
+    display: flex;
+    align-items: center;
+    width: 25%;
+}
+.wrp .checkbox,
+.email-list .checkbox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 48px; width: 48px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.email-list .checkbox:hover{
+    background: rgba(0, 0, 0, 0.03);
+}
+.email-list .from{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    flex-grow: 1;
+    margin-left: 10px;
+}
+.email-list .bold{
+    font-weight: 600;
+}
+.email-list .draft{
+    color: #DD4B39;
+    margin-left: 10px;
+}
+.email-list .body{
+    width: 65%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.email-list .time{
+    width: 10%;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 15px;
+    word-spacing: 2px;
+}
+.email-list .icons-wrp-right{
+    width: 10%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 3px;
+    display: none;
+}
+.email-list .icons-wrp-left .icons,
+.email-list .icons-wrp-right .icons,
+.bin .email-list .icons-wrp-left .icons{
+    color: rgba(0, 0, 0, 0.68);
+    height: 34px;  width: 34px;
+    padding: 6px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.email-list .icons-wrp-left .icons:hover,
+.email-list .icons-wrp-right .icons:hover{
+    background-color: rgba(192, 192, 192, 0.35);
+}
+.email-list:hover .time{ display: none; }
+.email-list:hover .icons-wrp-right{ display: flex; }
+
+.bin .email-list{
+    height: 50px;
+}
+.bin .email-list .icons-wrp-left .icons:hover{
+    background-color: rgba(192, 192, 192, 0.2);
+}
+.bin .email-list .icons-wrp-left p{
+    margin-left: 10px;
+}
+
+/* viewEmail */
+.viewEmail .icons{
+    cursor: pointer;
+    border-radius: 50%;
+    height: 30px; width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.viewEmail .icons:hover{
+    background: rgba(0,0,0,0.07);
+}
+.viewEmail .subject{
+    font-size: 24px;
+    margin-left: 70px;
+}
+.viewEmail .wrp{
+    display: flex;
+    margin-top: 20px;
+}
+.viewEmail .wrp .profile{
+    height: 40px; width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background: #c2185ce3;
+    border-radius: 50%;
+    margin-left: 10px;
+}
+.viewEmail .wrp .content-wrp{
+    flex-grow: 1;
+    margin: 0px 20px;
+}
+.viewEmail .email-heading .row1{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.viewEmail .email-heading .row1 div:nth-child(2){
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.viewEmail .wrp .content-wrp .body{
+    margin-top: 20px;
+}
